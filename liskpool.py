@@ -106,6 +106,13 @@ def estimatePayouts (log):
 			continue
 			
 		payouts.append ({ "address": x['address'], "balance": (float (x['balance']) / 100000000 * forged) / weight})
+	
+	for x,y in conf['donationspercentage'].items():
+		am = (rewtotal * y) / 100
+		address = x
+		
+		payouts.append ({ "address": address, "balance": am})
+		
 		#print (float (x['balance']) / 100000000, payouts [x['address']], x['address'])
 		
 	return (payouts, log, forged, rewtotal)
@@ -175,6 +182,7 @@ def pool ():
 			f.write ('sleep 3\n')
 
 	# Donation percentage
+	'''
 	if 'donationspercentage' in conf:
 		for y in conf['donationspercentage']:
 			am = (rewtotal * conf['donationspercentage'][y]) / 100
@@ -187,7 +195,7 @@ def pool ():
 			
 			f.write ('curl -k -H  "Content-Type: application/json" -X PUT -d \'' + json.dumps (data) + '\' ' + conf['nodepay'] + "/api/transactions\n\n")
 			f.write ('sleep 3\n')
-
+	'''
 	f.close ()
 	
 	# Update last payout
