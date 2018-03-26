@@ -115,13 +115,13 @@ def estimatePayouts (log):
 		
 		#print (float (x['balance']) / 100000000, payouts [x['address']], x['address'])
 		
-	return (payouts, log, forged, rewtotal)
+	return (payouts, log, forged)
 	
 	
 def pool ():
 	log = loadLog ()
 	
-	(topay, log, forged, rewtotal) = estimatePayouts (log)
+	(topay, log, forged) = estimatePayouts (log)
 		
 	f = open ('payments.sh', 'w')
 	for x in topay:
